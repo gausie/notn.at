@@ -34,8 +34,8 @@ while (have_posts()) : the_post();
 
   // Get previous and next posts in this taxonomy       
   $thisindex = array_search($post->ID, $ids);
-  $previd = $ids[$thisindex-1];
-  $nextid = $ids[$thisindex+1];
+  $previd = @$ids[$thisindex-1];
+  $nextid = @$ids[$thisindex+1];
 
 ?>
   <?php

@@ -151,7 +151,20 @@
     }
     add_action('pre_get_posts', 'notnat_set_category_session');
   }
-
+  
+  // Only show the portfolio category currently being traversed as active
+  function notnat_highlight_session_category_only( $classes, $item ){
+    if(is_single() && $item->object == "portfolio_category"){
+      $wp_session = WP_Session::get_instance();
+      $slug = sanitize_title($item->title);
+      if($wp_session['portfolio_category'] != $slug){
+        $classes = preg_replace('/(current(-menu-|[-_]page[-_])(item|parent|ancestor))/', '', $classes);
+      }
+    }
+    return $classes;
+  }
+  add_filter( 'nav_menu_css_class', 'notnat_highlight_session_category_only', 9, 2 );
+  
   // Make single posts identifiable to CSS
   function notnat_add_class_to_single_post($classes) {
     if (is_single()) {
