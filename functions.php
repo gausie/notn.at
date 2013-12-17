@@ -82,6 +82,10 @@
     
     // And get rid of primary menu
     unregister_nav_menu('primary_navigation'); 
+    
+    // Register image size for icon menu
+    add_image_size('icon-menu', 9999, 48 ); // 48 pixels high and unlimited width
+    
   }
   add_action('after_setup_theme', 'notnat_setup', 20); // higher priority to override primary_navigation being created by roots.io
 

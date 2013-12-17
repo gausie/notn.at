@@ -41,6 +41,17 @@ div.page-header {
   border: 0px none;
 }
 
+/* Menu image hover effect */
+
+  span.menu-image-hover-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  span.menu-image-hover-wrapper:hover img.menu-image:first-of-type {
+    display:none;
+  }
+  
 /* Portfolio page */
 
   main.main {
