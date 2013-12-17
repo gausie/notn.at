@@ -135,20 +135,22 @@
  */
 
   // Set session for portfolio category navigation
-  function notnat_set_category_session($query){
-    if (!is_admin() && $query->is_main_query() && (is_home() || is_tax('portfolio_category'))) {
-      $wp_session = WP_Session::get_instance();
-      $post_type = $query->get('post_type');
-      $portfolio_category = $query->get('portfolio_category');
-      if ($post_type == 'portfolio' && empty($portfolio_category)) {
-        $wp_session['portfolio_category'] = '';
-      }
-      elseif (!empty($portfolio_category)) {
-        $wp_session['portfolio_category'] = $portfolio_category;
+  if(class_exists("WP_Session")){
+    function notnat_set_category_session($query){
+      if (!is_admin() && $query->is_main_query() && (is_home() || is_tax('portfolio_category'))) {
+        $wp_session = WP_Session::get_instance();
+        $post_type = $query->get('post_type');
+        $portfolio_category = $query->get('portfolio_category');
+        if ($post_type == 'portfolio' && empty($portfolio_category)) {
+          $wp_session['portfolio_category'] = '';
+        }
+        elseif (!empty($portfolio_category)) {
+          $wp_session['portfolio_category'] = $portfolio_category;
+        }
       }
     }
+    add_action('pre_get_posts', 'notnat_set_category_session');
   }
-  add_action('pre_get_posts', 'notnat_set_category_session');
 
   // Make single posts identifiable to CSS
   function notnat_add_class_to_single_post($classes) {
