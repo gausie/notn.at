@@ -51,7 +51,11 @@
   // Enqueue scripts
   function notnat_scripts() {
     wp_enqueue_style('notnat', get_stylesheet_uri() , false, null);
+    wp_enqueue_script('jquery-mobile-touch', get_stylesheet_directory_uri() . '/assets/js/jquery.mobile.touch.js', array(
+      'jquery'
+    ) , false, true);
     wp_enqueue_script('next-prev-keyboard', get_stylesheet_directory_uri() . '/assets/js/next-previous-keyboard.js', array(
+      'jquery-mobile-touch',
       'jquery'
     ) , false, true);
   }
@@ -154,10 +158,14 @@
   
   // Only show the portfolio category currently being traversed as active
   function notnat_highlight_session_category_only( $classes, $item ){
-    if(is_single() && $item->object == "portfolio_category"){
+    if(is_single() && ($item->object == "portfolio_category" || $item->post_name == "everything") ){
       $wp_session = WP_Session::get_instance();
       $slug = sanitize_title($item->title);
-      if($wp_session['portfolio_category'] != $slug){
+      // If there is no session, then we can highlight whatever menu item has the title "everything"
+      if(empty($wp_session['portfolio_category']) && $item->post_name == "everything"){
+        $classes[] = "current-page-parent";
+      // Otherwise, we will remove the highlight from any menu item that is not currently being traversed
+      }elseif($wp_session['portfolio_category'] != $slug){
         $classes = preg_replace('/(current(-menu-|[-_]page[-_])(item|parent|ancestor))/', '', $classes);
       }
     }

@@ -17,7 +17,7 @@ $(document).ready(function(){
         });
     });
  
-    // This registers the keystroke
+    // This registers the keystroke and swipe events
     $(document).keydown(function(event) {
         // Left arrow = previous link
         if(event.keyCode==37) {
@@ -27,6 +27,10 @@ $(document).ready(function(){
         if(event.keyCode==39) {
             $('.next-post').trigger('click');
         }
+    }).swiperight(function(event){
+      $('.previous-post').trigger('click');
+    }).swipeleft(function(event){
+      $('.next-post').trigger('click');
     });
  
     // This prevents it from firing when typing in search box or comments
