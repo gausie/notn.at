@@ -1,0 +1,126 @@
+/*
+ Theme Name:     notnat
+ Theme URI:      http://notn.at
+ Author:         Gausie
+ Author URI:     http://gaus.ie
+ Template:       roots
+ Version:        1.0.0
+*/
+
+/* No need to do this @import url("../roots/style.css"); */
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
+
+div.logo {
+  text-align: center;
+}
+
+div.logo img {
+  margin: 1% 0 1%;
+  width:100%;
+  max-width: 711px;
+}
+
+@media (min-width: 768px){
+    ul.navbar-nav{
+        margin: 0 auto;
+        display: table;
+        table-layout: fixed;
+        float:none;
+    }
+}
+
+header.navbar-default, nav.navbar-default {
+  background-color: transparent;
+  border: 0px none;
+  margin-bottom: 0px;
+}
+
+div.page-header {
+  border: 0px none;
+}
+
+/* Portfolio page */
+
+  main.main {
+    text-align: center;
+  }
+
+  article.portfolio:not(.single-post) {
+    overflow: hidden;  
+    display: inline-block;
+    background-color: black;
+    text-align: center;
+    position: relative;
+    margin: 5px;
+  }
+
+/* Single piece page */
+
+  article.portfolio.single-post {
+  
+  }
+  
+  article.portfolio.single-post h1 {
+    text-align: center;
+  }
+  
+  article.portfolio.single-post a.thumbnail {
+    border: 0px none;
+  }
+
+/* CSS3 transformations for sliding captions on portfolio page */
+
+  article.portfolio:hover .caption {
+    -webkit-transform: translateY(-100%);  
+       -moz-transform: translateY(-100%);  
+         -o-transform: translateY(-100%);  
+            transform: translateY(-100%);  
+  }
+
+  .caption {
+    background-color: rgba(0,0,0,0.8);  
+    position: absolute;  
+    color: #fff;  
+    z-index: 100;  
+    -webkit-transition: all 300ms ease-out;  
+    -moz-transition: all 300ms ease-out;  
+    -o-transition: all 300ms ease-out;  
+    -ms-transition: all 300ms ease-out;  
+    transition: all 300ms ease-out;  
+    left: 0;  
+    height: 30px;  
+    width: 300px;  
+    display: block;  
+    bottom: -30px;  
+    line-height: 25pt;  
+    text-align: center;  
+  }
+
+  .previous-post, .next-post {
+    transition: background-color 0.3s ease;
+    display: block;
+    position: fixed;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    line-height:50px;
+    color: white;
+    font-size: 30px;
+  }
+  
+  .previous-post:hover, .next-post:hover {
+    background-color: darkgrey;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .previous-post {
+    left: 0px;
+  }
+  
+  .next-post {
+    right: 0px;
+  }
