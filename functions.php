@@ -5,20 +5,57 @@
  * Adds hooks and configures Wordpress (and roots.io) to work for this theme
  * 
  */
+
+/**
+ * Plugin dependencies
+ */
  
+  require_once 'includes/TGM-Plugin-Activation/tgm-plugin-activation/class-tgm-plugin-activation.php';
+  
+  function notnat_register_dependencies() {
+    $plugins = array(
+      array(
+        'name' => 'Infinite Scroll',
+        'slug' => 'infinite-scroll',
+        'required' => false,
+      ),
+      array(
+        'name' => 'Menu Image',
+        'slug' => 'menu-image',
+        'required' => false,
+      ),
+      array(
+        'name' => 'Portfolio Post Type',
+        'slug' => 'portfolio-post-type',
+        'required' => true,
+      ),
+      array(
+        'name' => 'Simple Custom Post Order',
+        'slug' => 'simple-custom-post-order',
+        'required' => false,
+      ),
+      array(
+        'name' => 'WP Session Manager',
+        'slug' => 'wp-session-manager',
+        'required' => true,
+      ),
+    );
+    tgmpa( $plugins );
+  }
+  add_action( 'tgmpa_register', 'notnat_register_dependencies' );
  
 /**
  * Theme initiation
  */
  
   // Enqueue scripts
-  function theme_name_scripts() {
+  function notnat_scripts() {
     wp_enqueue_style('notnat', get_stylesheet_uri() , false, null);
     wp_enqueue_script('next-prev-keyboard', get_stylesheet_directory_uri() . '/assets/js/next-previous-keyboard.js', array(
       'jquery'
     ) , false, true);
   }
-  add_action('wp_enqueue_scripts', 'theme_name_scripts');
+  add_action('wp_enqueue_scripts', 'notnat_scripts');
 
   // Add support for custom header
   function notnat_header_image() {
@@ -49,34 +86,34 @@
  */
 
   // Front page should show portfolio items
-  function portfolio_on_front_page($query) {
+  function notnat_portfolio_on_front_page($query) {
     if ($query->is_main_query() && is_home()) {
       $query->set('post_type', 'portfolio');
     }
   }
-  add_action('pre_get_posts', 'portfolio_on_front_page');
+  add_action('pre_get_posts', 'notnat_portfolio_on_front_page');
 
   // Change portfolio category slug
-  function change_portfolio_category_slug($args){
+  function notnat_change_portfolio_category_slug($args){
     $args['rewrite'] = array(
       'slug' => 'media'
     );
     return $args;
   }
-  add_filter('portfolioposttype_category_args', 'change_portfolio_category_slug');
+  add_filter('portfolioposttype_category_args', 'notnat_change_portfolio_category_slug');
 
   // Remove slug from portfolio post type
-  function remove_portfolio_slug($post_link, $post, $leavename){
+  function notnat_remove_portfolio_slug($post_link, $post, $leavename){
     if (!in_array($post->post_type, array(
       'portfolio'
     )) || 'publish' != $post->post_status) return $post_link;
     $post_link = str_replace('/' . $post->post_type . '/', '/', $post_link);
     return $post_link;
   }
-  add_filter('post_type_link', 'remove_portfolio_slug', 10, 3);
+  add_filter('post_type_link', 'notnat_remove_portfolio_slug', 10, 3);
 
   // I don't really know what this is for but http://vip.wordpress.com/documentation/remove-the-slug-from-your-custom-post-type-permalinks/ insists it's important
-  function parse_request_tricksy($query){
+  function notnat_parse_request_tricksy($query){
     
     // Only noop the main query
     if (!$query->is_main_query()) return;
@@ -91,14 +128,14 @@
       'page'
     ));
   }
-  add_action('pre_get_posts', 'parse_request_tricksy');
+  add_action('pre_get_posts', 'notnat_parse_request_tricksy');
 
 /**
  * Functionality
  */
 
   // Set session for portfolio category navigation
-  function set_category_session($query){
+  function notnat_set_category_session($query){
     if (!is_admin() && $query->is_main_query() && (is_home() || is_tax('portfolio_category'))) {
       $wp_session = WP_Session::get_instance();
       $post_type = $query->get('post_type');
@@ -111,16 +148,16 @@
       }
     }
   }
-  add_action('pre_get_posts', 'set_category_session');
+  add_action('pre_get_posts', 'notnat_set_category_session');
 
   // Make single posts identifiable to CSS
-  function add_class_to_single_post($classes) {
+  function notnat_add_class_to_single_post($classes) {
     if (is_single()) {
       array_push($classes, 'single-post');
     }
 
     return $classes;
   }
-  add_filter('post_class', 'add_class_to_single_post');
+  add_filter('post_class', 'notnat_add_class_to_single_post');
   
 ?>
