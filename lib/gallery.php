@@ -40,11 +40,11 @@ function roots_gallery($attr) {
     'itemtag'    => '',
     'icontag'    => '',
     'captiontag' => '',
-    'columns'    => 4,
-    'size'       => 'original',
+    'columns'    => 1,
+    'size'       => 'portfolio-711',
     'include'    => '',
     'exclude'    => '',
-    'link'       => 'file'
+    'link'       => 'none'
   ), $attr));
 
   $id = intval($id);
@@ -75,7 +75,12 @@ function roots_gallery($attr) {
   if (is_feed()) {
     $output = "\n";
     foreach ($attachments as $att_id => $attachment) {
-      $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+      echo $link;
+      if($link=='none'){
+        $output .= wp_get_attachment_image($att_id, $size);
+      }else{
+        $output .= wp_get_attachment_link($att_id, $size, ($link!="file")) . "\n"; 
+      }
     }
     return $output;
   }
@@ -85,7 +90,11 @@ function roots_gallery($attr) {
 
   $i = 0;
   foreach ($attachments as $id => $attachment) {
-    $image = ('file' == $link) ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+    if($link == 'none'){
+      $image = wp_get_attachment_image($id, $size);
+    }else{
+      $image = ('file' == $link) ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+    }
     $output .= ($i % $columns == 0) ? '<div class="row gallery-row">': '';
     $output .= '<div class="' . $grid .'">' . $image;
 

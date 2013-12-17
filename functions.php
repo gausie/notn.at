@@ -86,6 +86,9 @@
     // Register image size for icon menu
     add_image_size('icon-menu', 9999, 48 ); // 48 pixels high and unlimited width
     
+    // Register image size for portfolio images
+    add_image_size('portfolio-711', 711, 9999 ); // 711 pixels wide and unlimited height
+    
   }
   add_action('after_setup_theme', 'notnat_setup', 20); // higher priority to override primary_navigation being created by roots.io
 
