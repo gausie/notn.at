@@ -75,11 +75,10 @@ function roots_gallery($attr) {
   if (is_feed()) {
     $output = "\n";
     foreach ($attachments as $att_id => $attachment) {
-      echo $link;
-      if($link=='none'){
+      if('none' == $link){
         $output .= wp_get_attachment_image($att_id, $size);
       }else{
-        $output .= wp_get_attachment_link($att_id, $size, ($link!="file")) . "\n"; 
+        $output .= wp_get_attachment_link($att_id, $size, ('file' != $link), false) . "\n"; 
       }
     }
     return $output;
@@ -90,10 +89,10 @@ function roots_gallery($attr) {
 
   $i = 0;
   foreach ($attachments as $id => $attachment) {
-    if($link == 'none'){
+    if('none' == $link){
       $image = wp_get_attachment_image($id, $size);
     }else{
-      $image = ('file' == $link) ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+      $image = wp_get_attachment_link($id, $size, ('file' != $link), false);
     }
     $output .= ($i % $columns == 0) ? '<div class="row gallery-row">': '';
     $output .= '<div class="' . $grid .'">' . $image;
