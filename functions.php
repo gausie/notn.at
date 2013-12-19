@@ -190,4 +190,36 @@
   }
   add_filter('post_class', 'notnat_add_class_to_single_post');
   
+  // Rename uploaded images to add "-original" so we can stop users seeing them
+  function notnat_add_or_remove_original_where_appropriate($id) {
+      // determine if attachment has portfolio as a parent
+      $attachment = get_post($id);
+      $parent_id = $attachment->post_parent;
+      $parent_type = get_post_type($parent_id);
+      // prep attached file data
+      $file = get_attached_file($id);
+      $path = pathinfo($file);
+      $filename = $path['filename'];
+      $has_original = preg_match("/(-original)$/",$filename);
+      if(!$parent_type || $parent_type != "portfolio"){
+        // parent is not a porfolio -remove -original if present
+        if($has_original){
+          $filename = substr($filename,0,-9);
+        }
+      }else{
+        // parent is a portfolio - add -original if not present
+        if(!$has_original){
+          $filename .= "-original";
+        }
+      }
+      // rename if necessary
+      if($filename != $path['filename']){
+          $new_file = $path['dirname']."/".$filename.".".$path['extension'];
+          rename($file,$new_file);
+          update_attached_file($id,$new_file);
+      }
+  }
+  add_action('add_attachment', 'notnat_add_or_remove_original_where_appropriate');
+  add_action('edit_attachment', 'notnat_add_or_remove_original_where_appropriate');
+  
 ?>
