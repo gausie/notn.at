@@ -6,10 +6,10 @@
  */
 
 /**
- * Front page should show portfolio items
+ * Front page and feed should show portfolio items
  */
 add_action('pre_get_posts', function($query) {
-  if ($query->is_main_query() && is_home()) {
+  if (($query->is_main_query() && is_home()) || is_feed()) {
     $query->set('post_type', 'portfolio');
   }
 });
@@ -68,4 +68,14 @@ add_action('pre_get_posts', function($query){
     'portfolio',
     'page'
   ));
+});
+
+/**
+ * Add to At A Glance
+ */
+add_action('dashboard_glance_items', function() {
+  $portfolio_item_count = wp_count_posts( 'portfolio' );
+  $formatted_number = number_format_i18n( $portfolio_item_count->publish );
+  $text = _n( 'Piece', 'Pieces', intval($portfolio_item_count->publish) );
+  echo "<li class='portfolio-count'><a href='edit.php?post_type=portfolio'>{$formatted_number} {$text}</a></li>";
 });
