@@ -41,7 +41,7 @@ function roots_gallery($attr) {
     'icontag'    => '',
     'captiontag' => '',
     'columns'    => 1,
-    'size'       => 'portfolio-711',
+    'size'       => 'portfolio',
     'include'    => '',
     'exclude'    => '',
     'link'       => 'none'

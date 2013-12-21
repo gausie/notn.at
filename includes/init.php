@@ -72,6 +72,27 @@ add_action('after_setup_theme', function() {
   add_image_size('icon-menu', 9999, 48 ); // 48 pixels high and unlimited width
   
   // Register image size for portfolio images
-  add_image_size('portfolio-711', 711, 9999 ); // 711 pixels wide and unlimited height
+  add_image_size('portfolio', 650, 9999 ); // 711 pixels wide and unlimited height
+  
+  // Name the new image sizes for the interface
+  add_filter('image_size_names_choose', function($sizes) {
+    return array_merge($sizes, array(
+      'icon-menu' => __('Menu Icon'),
+      'portfolio' => __('Portfolio'),
+    ));
+  });
   
 }, 20); // higher priority to override primary_navigation being created by roots.io
+
+/**
+ * Remove unnecessary menu icon thumbnails from menu-image plugin
+ */
+add_filter('intermediate_image_sizes_advanced', function($sizes){
+
+  unset( $sizes['menu-24x24']);
+  unset( $sizes['menu-36x36']);
+  unset( $sizes['menu-48x48']);
+ 
+  return $sizes;
+  
+});
