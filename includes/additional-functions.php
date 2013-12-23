@@ -41,16 +41,6 @@ add_filter( 'nav_menu_css_class',function( $classes, $item ){
   return $classes;
 }, 9, 2 );
 
-/**
- * Make single posts identifiable to CSS
- */
-add_filter('post_class', function($classes) {
-  if (is_single()) {
-    array_push($classes, 'single-post');
-  }
-  return $classes;
-});
-
 /** 
  * Rename uploaded images to add "-original" so we can stop users seeing them  
  * ( Obviously relying on $_REQUEST isn't great but messing )

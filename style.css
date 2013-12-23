@@ -1,4 +1,5 @@
 /*
+
  Theme Name:     notnat
  Theme URI:      http://notn.at
  Author:         Gausie
@@ -43,11 +44,22 @@ ul.nav>li>a {
 }
 
 div.page-header {
+  text-align: center;
   border: 0px none;
 }
 
 div.page-header:empty {
   margin-top: 0px;
+}
+
+/* in Roots config, single portfolio and pages are 8 col rather than usual 12 */
+body.single-portfolio main, body.page main {
+  float: none;
+  margin: 0 auto;
+  text-align: justify;
+}
+div.gallery {
+  text-align: center;
 }
 
 /* Menu image hover effect */
@@ -67,7 +79,7 @@ div.page-header:empty {
     text-align: center;
   }
 
-  article.portfolio:not(.single-post) {
+  body:not(.single-portfolio) article.portfolio {
     overflow: hidden;  
     display: inline-block;
     background-color: black;
@@ -78,15 +90,15 @@ div.page-header:empty {
 
 /* Single piece page */
 
-  article.portfolio.single-post {
+  body.single-portfolio article.portfolio {
   
   }
   
-  article.portfolio.single-post h1 {
+  body.single-portfolio article.portfolio h1 {
     text-align: center;
   }
   
-  article.portfolio.single-post a.thumbnail {
+  body.single-portfolio article.portfolio a.thumbnail {
     border: 0px none;
   }
 
