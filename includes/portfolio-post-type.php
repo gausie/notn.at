@@ -17,7 +17,7 @@ add_action('pre_get_posts', function($query) {
 /**
  * Change portfolio language
  */
-add_filter('portfolioposttype_category_args', function($args){  
+add_filter('portfolioposttype_args', function($args){  
   $labels = array(
       'name'               => __( 'Portfolio', 'portfolio-post-type' ),
       'singular_name'      => __( 'Piece', 'portfolio-post-type' ),
