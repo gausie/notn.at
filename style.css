@@ -37,6 +37,11 @@ header.navbar-default, nav.navbar-default {
   margin-bottom: 0px;
 }
 
+ul.nav>li>a {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
 div.page-header {
   border: 0px none;
 }
