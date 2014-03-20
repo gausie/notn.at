@@ -1,3 +1,6 @@
+<?php
+  $menus = get_registered_nav_menus();
+?>
 <header class="banner navbar navbar-default navbar-static-top" role="banner">
   <div class="container">
      
@@ -7,7 +10,11 @@
         <h1 style="display:none;"><?php bloginfo('name'); ?></h1>
       </a>
     </div>
-  
+ 
+    <?php
+      if (has_nav_menu('social_media')) :
+    ?>
+
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="div.menu-social-media">
@@ -16,16 +23,23 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand visible-xs" href="#"><?php echo $menus['social_media']; ?></a>
       </div>
     
       <div class="collapse navbar-collapse menu-social-media">
         <?php
-          if (has_nav_menu('social_media')) :
             wp_nav_menu(array('theme_location' => 'social_media', 'menu_class' => 'nav navbar-nav'));
-          endif;
         ?>
       </div>
     </nav>
+
+    <?php
+      endif;
+    ?>
+
+    <?php
+      if (has_nav_menu('categories')) :
+    ?>
 
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
@@ -35,15 +49,19 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand visible-xs" href="#"><?php echo $menus['categories']; ?></a>
       </div>
     
       <div class="collapse navbar-collapse menu-categories">
         <?php
-          if (has_nav_menu('categories')) :
             wp_nav_menu(array('theme_location' => 'categories', 'menu_class' => 'nav navbar-nav'));
-          endif;
         ?>
       </nav>
     </nav>
+
+    <?php
+      endif;
+    ?>
+
   </div>
 </header>
