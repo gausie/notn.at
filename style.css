@@ -102,6 +102,12 @@ div.gallery {
     border: 0px none;
   }
 
+  img.attachment-portfolio {
+    width: inherit;  /* Make images fill their parent's space*/
+    max-width: 100%; /* Add !important if needed. */
+    height: auto; /* WP added height and width attributes scales */
+  }
+
 /* CSS3 transformations for sliding captions on portfolio page */
 
   article.portfolio:hover .caption {
