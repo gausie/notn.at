@@ -39,10 +39,10 @@ while (have_posts()) : the_post();
 
 ?>
   <?php
-    if(!empty($previd)) echo '<a class="previous-post" href="' . get_permalink($previd) . '">&larr;</a>';
+    if(!empty($previd)) echo '<a class="previous-post hidden-xs" href="' . get_permalink($previd) . '">&larr;</a>';
   ?>
   <?php
-    if(!empty($nextid)) echo '<a class="next-post" href="' . get_permalink($nextid) . '">&rarr;</a>';
+    if(!empty($nextid)) echo '<a class="next-post hidden-xs" href="' . get_permalink($nextid) . '">&rarr;</a>';
   ?> 
   <article <?php post_class(); ?>>
     <header>
