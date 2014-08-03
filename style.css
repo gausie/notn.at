@@ -49,6 +49,18 @@ header.navbar-default, nav.navbar-default {
   margin-bottom: 0px;
 }
 
+@media (max-width: 768px) {
+
+    #menu-menu li a:after {
+      content: attr(title);
+    }
+
+    #menu-menu li a img {
+      display: none;
+    }
+
+}
+
 ul.nav>li>a {
   padding-left: 7px;
   padding-right: 7px;
