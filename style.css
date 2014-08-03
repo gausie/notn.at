@@ -13,6 +13,14 @@
 /* =Theme customization starts here
 -------------------------------------------------------------- */
 
+body {
+  font-family: Georgia, serif !important;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Helvetica Neue", HelveticaNeue, TexGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif  !important;
+}
+
 div.logo {
   text-align: center;
 }
