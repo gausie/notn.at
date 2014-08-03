@@ -10,13 +10,13 @@
  */
 add_action('wp_enqueue_scripts', function() {
   wp_enqueue_style('notnat', get_stylesheet_uri() , false, null);
-  wp_enqueue_script('jquery-mobile-touch', get_stylesheet_directory_uri() . '/assets/js/jquery.mobile.touch.js', array(
+  /*wp_enqueue_script('jquery-mobile-touch', get_stylesheet_directory_uri() . '/assets/js/jquery.mobile.touch.js', array(
     'jquery'
   ) , false, true);
   wp_enqueue_script('next-prev-keyboard', get_stylesheet_directory_uri() . '/assets/js/next-previous-keyboard.js', array(
     'jquery-mobile-touch',
     'jquery'
-  ) , false, true);
+  ) , false, true);*/
 });
 
 /**
