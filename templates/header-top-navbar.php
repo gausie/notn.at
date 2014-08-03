@@ -23,7 +23,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand visible-xs" href="#"><?php echo $menus['social_media']; ?></a>
+        <a class="navbar-brand visible-xs" href="#">Menu</a>
       </div>
     
       <div class="collapse navbar-collapse menu-social-media">
