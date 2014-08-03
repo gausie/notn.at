@@ -49,7 +49,7 @@ header.navbar-default, nav.navbar-default {
   margin-bottom: 0px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
     #menu-menu li a:after {
       content: attr(title);
