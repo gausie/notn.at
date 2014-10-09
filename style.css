@@ -95,7 +95,7 @@ div.gallery {
   span.menu-image-hover-wrapper:hover img.menu-image:first-of-type {
     display:none;
   }
-  
+
 /* Portfolio page */
 
   main.main {
@@ -103,7 +103,7 @@ div.gallery {
   }
 
   body:not(.single-portfolio) article.portfolio {
-    overflow: hidden;  
+    overflow: hidden;
     display: inline-block;
     background-color: black;
     text-align: center;
@@ -114,49 +114,49 @@ div.gallery {
 /* Single piece page */
 
   body.single-portfolio article.portfolio {
-  
+
   }
-  
+
   body.single-portfolio article.portfolio h1 {
     text-align: center;
   }
-  
+
   body.single-portfolio article.portfolio a.thumbnail {
     border: 0px none;
   }
 
   img.attachment-portfolio {
     width: inherit;  /* Make images fill their parent's space*/
-    max-width: 100%; /* Add !important if needed. */
+    /* max-width: 100%; Add !important if needed. */
     height: auto; /* WP added height and width attributes scales */
   }
 
 /* CSS3 transformations for sliding captions on portfolio page */
 
   article.portfolio:hover .caption {
-    -webkit-transform: translateY(-100%);  
-       -moz-transform: translateY(-100%);  
-         -o-transform: translateY(-100%);  
-            transform: translateY(-100%);  
+    -webkit-transform: translateY(-100%);
+       -moz-transform: translateY(-100%);
+         -o-transform: translateY(-100%);
+            transform: translateY(-100%);
   }
 
   .caption {
-    background-color: rgba(0,0,0,0.8);  
-    position: absolute;  
-    color: #fff;  
-    z-index: 100;  
-    -webkit-transition: all 300ms ease-out;  
-    -moz-transition: all 300ms ease-out;  
-    -o-transition: all 300ms ease-out;  
-    -ms-transition: all 300ms ease-out;  
-    transition: all 300ms ease-out;  
-    left: 0;  
-    height: 30px;  
-    width: 200px;  
-    display: block;  
-    bottom: -30px;  
-    line-height: 25pt;  
-    text-align: center;  
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    color: #fff;
+    z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    left: 0;
+    height: 30px;
+    width: 200px;
+    display: block;
+    bottom: -30px;
+    line-height: 25pt;
+    text-align: center;
   }
 
   .previous-post, .next-post {
@@ -171,17 +171,17 @@ div.gallery {
     color: white;
     font-size: 30px;
   }
-  
+
   .previous-post:hover, .next-post:hover {
     background-color: darkgrey;
     color: white;
     text-decoration: none;
   }
-  
+
   .previous-post {
     left: 0px;
   }
-  
+
   .next-post {
     right: 0px;
   }
