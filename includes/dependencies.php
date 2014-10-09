@@ -3,7 +3,7 @@
 /**
  * Declares plugin dependencies
  */
- 
+
 require_once 'TGM-Plugin-Activation/tgm-plugin-activation/class-tgm-plugin-activation.php';
 
 add_action( 'tgmpa_register', function() {
@@ -24,8 +24,8 @@ add_action( 'tgmpa_register', function() {
       'required' => true,
     ),
     array(
-      'name' => 'Simple Custom Post Order',
-      'slug' => 'simple-custom-post-order',
+      'name' => 'Post Types Order',
+      'slug' => 'post-types-order',
       'required' => false,
     ),
     array(
